@@ -7,168 +7,196 @@
     <link href="/css/currentStyle.css" rel="stylesheet" />
 
     <style>
-      :root {
-        --black-a7: rgba(0, 0, 0, 0.5);
-
-        --grass-1: #fbfefb;
-        --grass-2: #f5fbf5;
-        --grass-3: #e9f6e9;
-        --grass-4: #daf1db;
-        --grass-5: #c9e8ca;
-        --grass-6: #b2ddb5;
-        --grass-7: #94ce9a;
-        --grass-8: #65ba74;
-        --grass-9: #46a758;
-        --grass-10: #3e9b4f;
-        --grass-11: #2a7e3b;
-        --grass-12: #203c25;
-
-        --mauve-1: #fdfcfd;
-        --mauve-2: #faf9fb;
-        --mauve-3: #f2eff3;
-        --mauve-4: #eae7ec;
-        --mauve-5: #e3dfe6;
-        --mauve-6: #dbd8e0;
-        --mauve-7: #d0cdd7;
-        --mauve-8: #bcbac7;
-        --mauve-9: #8e8c99;
-        --mauve-10: #84828e;
-        --mauve-11: #65636d;
-        --mauve-12: #211f26;
-
-        --black-a1: rgba(0, 0, 0, 0.05);
-        --black-a2: rgba(0, 0, 0, 0.1);
-        --black-a3: rgba(0, 0, 0, 0.15);
-        --black-a4: rgba(0, 0, 0, 0.2);
-        --black-a5: rgba(0, 0, 0, 0.3);
-        --black-a6: rgba(0, 0, 0, 0.4);
-        --black-a7: rgba(0, 0, 0, 0.5);
-        --black-a8: rgba(0, 0, 0, 0.6);
-        --black-a9: rgba(0, 0, 0, 0.7);
-        --black-a10: rgba(0, 0, 0, 0.8);
-        --black-a11: rgba(0, 0, 0, 0.9);
-        --black-a12: rgba(0, 0, 0, 0.95);
-      }
-      /* reset */
-      button {
-        all: unset;
+      .menu_nuxtBoxClass {
+        min-height: 800px;
       }
 
-      .MenubarRoot {
-        display: flex;
-        background-color: white;
-        padding: 3px;
+      .menu_contentClass {
+        display: inline-block;
+        box-sizing: border-box;
+        min-width: 130px;
+        background-color: #fff;
+        border: 1px solid #ccc;
         border-radius: 6px;
-        box-shadow: 0 2px 10px var(--black-a7);
+        padding: 5px;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+        font-family: apple-system, BlinkMacSystemFont, helvetica, arial, sans-serif;
+        font-size: 13px;
+
+        &:focus-within {
+          border-color: #111;
+        }
       }
 
-      .MenubarTrigger {
-        padding: 8px 12px;
-        outline: none;
-        user-select: none;
-        font-weight: 500;
-        line-height: 1;
-        border-radius: 4px;
-        color: var(--grass-11);
-        font-size: 13px;
+      .menu_itemStyles {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 2px;
-      }
-
-      .MenubarTrigger[data-highlighted],
-      .MenubarTrigger[data-state="open"] {
-        background-color: var(--grass-4);
-      }
-
-      .MenubarContent,
-      .MenubarSubContent {
-        min-width: 220px;
-        background-color: white;
-        border-radius: 6px;
-        padding: 5px;
-        box-shadow:
-          0px 10px 38px -10px rgba(22, 23, 24, 0.35),
-          0px 10px 20px -15px rgba(22, 23, 24, 0.2);
-        animation-duration: 400ms;
-        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-        will-change: transform, opacity;
-      }
-
-      .MenubarItem,
-      .MenubarSubTrigger,
-      .MenubarCheckboxItem,
-      .MenubarRadioItem {
-        all: unset;
-        font-size: 13px;
         line-height: 1;
-        color: var(--grass-11);
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
+        cursor: default;
+        user-select: none;
+        white-space: nowrap;
         height: 25px;
         padding: 0 10px;
-        position: relative;
-        user-select: none;
+        color: #111;
+        border-radius: 3px;
       }
 
-      .MenubarItem.inset,
-      .MenubarSubTrigger.inset,
-      .MenubarCheckboxItem.inset,
-      .MenubarRadioItem.inset {
-        padding-left: 20px;
-      }
-
-      .MenubarItem[data-state="open"],
-      .MenubarSubTrigger[data-state="open"] {
-        background-color: var(--grass-4);
-        color: var(--grass-11);
-      }
-
-      .MenubarItem[data-highlighted],
-      .MenubarSubTrigger[data-highlighted],
-      .MenubarCheckboxItem[data-highlighted],
-      .MenubarRadioItem[data-highlighted] {
-        background-image: linear-gradient(135deg, var(--grass-9) 0%, var(--grass-10) 100%);
-        color: var(--grass-1);
-      }
-
-      .MenubarItem[data-disabled],
-      .MenubarSubTrigger[data-disabled],
-      .MenubarCheckboxItem[data-disabled],
-      .MenubarRadioItem[data-disabled] {
-        color: var(--mauve-8);
-        pointer-events: none;
-      }
-
-      .MenubarItemIndicator {
-        position: absolute;
-        left: 0;
-        width: 20px;
-        display: inline-flex;
+      .menu_labelClass {
+        display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+        line-height: 1;
+        cursor: default;
+        user-select: none;
+        white-space: nowrap;
+        height: 25px;
+        padding: 0 10px;
+        color: #ccc;
+        border-radius: 3px;
       }
 
-      .MenubarSeparator {
+      .menu_itemClass {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        line-height: 1;
+        cursor: default;
+        user-select: none;
+        white-space: nowrap;
+        height: 25px;
+        padding: 0 10px;
+        color: #111;
+        border-radius: 3px;
+        outline: none;
+
+        &[data-highlighted] {
+          background-color: #111;
+          color: white;
+        }
+
+        &[data-disabled] {
+          color: #ccc;
+        }
+      }
+
+      .menu_subTriggerClass {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        line-height: 1;
+        cursor: default;
+        user-select: none;
+        white-space: nowrap;
+        height: 25px;
+        padding: 0 10px;
+        color: #111;
+        border-radius: 3px;
+        outline: none;
+
+        &[data-highlighted] {
+          background-color: #111;
+          color: white;
+        }
+
+        &[data-disabled] {
+          color: #ccc;
+        }
+
+        &:not([data-highlighted])[data-state="open"] {
+          background-color: #ccc;
+          color: #111;
+        }
+      }
+
+      .menu_separatorClass {
         height: 1px;
-        background-color: var(--grass-6);
-        margin: 5px;
+        margin: 5px 10px;
+        background-color: #ccc;
       }
 
-      .RightSlot {
-        margin-left: auto;
-        padding-left: 20px;
-        color: var(--mauve-9);
+      @keyframes menu_animateIn {
+        from {
+          transform: scale(0.95);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
       }
 
-      [data-highlighted] > .RightSlot {
-        color: white;
+      @keyframes menu_animateOut {
+        from {
+          transform: scale(1);
+          opacity: 1;
+        }
+        to {
+          transform: scale(0.95);
+          opacity: 0;
+        }
       }
 
-      [data-disabled] > .RightSlot {
-        color: var(--mauve-8);
+      .menu_animatedContentClass {
+        display: inline-block;
+        box-sizing: border-box;
+        min-width: 130px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 5px;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+        font-family: apple-system, BlinkMacSystemFont, helvetica, arial, sans-serif;
+        font-size: 13px;
+
+        &:focus-within {
+          border-color: #111;
+        }
+
+        &[data-state="open"] {
+          animation: menu_animateIn 300ms ease;
+        }
+
+        &[data-state="closed"] {
+          animation: menu_animateOut 300ms ease;
+        }
+      }
+
+      .menu_animatedItemIndicatorClass {
+        &[data-state="checked"] {
+          animation: menu_animateIn 300ms ease;
+        }
+
+        &[data-state="unchecked"] {
+          animation: menu_animateOut 300ms ease;
+        }
+      }
+    </style>
+
+    <style>
+      .menubar_rootClass {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 2px;
+      }
+
+      .menubar_triggerClass {
+        padding: 6px 16px;
+        border: 0;
+        background-color: transparent;
+        font-family: apple-system, BlinkMacSystemFont, helvetica, arial, sans-serif;
+        font-size: 13px;
+        border-radius: 4px;
+        outline: none;
+
+        &[data-highlighted] {
+          background-color: #ccc;
+        }
+
+        &[data-state="open"] {
+          background-color: #111;
+          color: white;
+        }
       }
     </style>
   </head>

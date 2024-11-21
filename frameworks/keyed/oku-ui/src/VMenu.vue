@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { shallowRef } from "vue";
+import TickIcon from "./TickIcon.vue";
 import {
   MenubarCheckboxItem,
   MenubarContent,
@@ -15,143 +16,146 @@ import {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
+  MenubarLabel,
 } from "@oku-ui/primitives";
 
-const currentMenu = ref("");
-const checkboxOne = ref(false);
-const checkboxTwo = ref(false);
-const person = ref("pedro");
-function handleClick() {
-  // eslint-disable-next-line no-alert
-  alert("hello!");
+const checkOptions = ["Always Show Bookmarks Bar", "Always Show Toolbar in Fullscreen", "Always Show Full URLs"];
+const checkedSelection = shallowRef<string[]>([checkOptions[1]!]);
+
+function setCheckedSelection(option: string) {
+  const cur = checkedSelection.value;
+  checkedSelection.value = cur.includes(option) ? cur.filter((el) => el !== option) : cur.concat(option);
+}
+
+const radioOptions = ["Andy", "Benoît", "Colm", "Jenna", "Pedro"];
+const radioSelection = shallowRef(radioOptions[1]);
+
+function setRadioSelection(value: string) {
+  radioSelection.value = value;
 }
 </script>
 
 <template>
-  <MenubarRoot v-model="currentMenu" class="MenubarRoot">
-    <MenubarMenu value="file">
-      <MenubarTrigger class="MenubarTrigger"> File </MenubarTrigger>
+  <MenubarRoot class="menubar_rootClass">
+    <MenubarMenu>
+      <MenubarTrigger class="menubar_triggerClass"> File </MenubarTrigger>
       <MenubarPortal force-mount>
-        <MenubarContent class="MenubarContent" align="start" :side-offset="5" :align-offset="-3" force-mount>
-          <MenubarItem class="MenubarItem">
-            New Tab
-            <div class="RightSlot">⌘ T</div>
-          </MenubarItem>
-          <MenubarItem class="MenubarItem">
-            New Window
-            <div class="RightSlot">⌘ N</div>
-          </MenubarItem>
-          <MenubarItem class="MenubarItem" disabled> New Incognito Window </MenubarItem>
-          <MenubarSeparator class="MenubarSeparator" />
+        <MenubarContent class="menu_contentClass" :side-offset="2" force-mount>
+          <MenubarItem class="menu_itemClass"> New Tab </MenubarItem>
+          <MenubarItem class="menu_itemClass"> New Window </MenubarItem>
+          <MenubarItem class="menu_itemClass"> New Incognito Window </MenubarItem>
+          <MenubarSeparator class="menu_separatorClass" />
           <MenubarSub>
-            <MenubarSubTrigger class="MenubarItem">
-              Share
-              <div class="RightSlot">icon</div>
-            </MenubarSubTrigger>
+            <MenubarSubTrigger class="menu_subTriggerClass"> Share <span>→</span> </MenubarSubTrigger>
             <MenubarPortal force-mount>
-              <MenubarSubContent class="MenubarContent" :align-offset="-5" force-mount>
-                <MenubarItem class="MenubarItem"> Email Link </MenubarItem>
-                <MenubarItem class="MenubarItem"> Messages </MenubarItem>
-                <MenubarItem class="MenubarItem"> Notes </MenubarItem>
+              <MenubarSubContent class="menu_contentClass" :align-offset="-6">
+                <MenubarItem class="menu_itemClass"> Email Link </MenubarItem>
+                <MenubarItem class="menu_itemClass"> Messages </MenubarItem>
+                <MenubarItem class="menu_itemClass"> Airdrop </MenubarItem>
               </MenubarSubContent>
-            </MenubarPortal>
+            </MenubarPortal force-mount>
           </MenubarSub>
-          <MenubarSeparator class="MenubarSeparator" />
-          <MenubarItem class="MenubarItem">
-            Print…
-            <div class="RightSlot">⌘ P</div>
-          </MenubarItem>
+          <MenubarSeparator class="menu_separatorClass" />
+          <MenubarItem class="menu_itemClass"> Print… </MenubarItem>
         </MenubarContent>
-      </MenubarPortal>
+      </MenubarPortal force-mount>
     </MenubarMenu>
 
     <MenubarMenu>
-      <MenubarTrigger class="MenubarTrigger"> Edit </MenubarTrigger>
+      <MenubarTrigger class="menubar_triggerClass"> Edit </MenubarTrigger>
       <MenubarPortal force-mount>
-        <MenubarContent class="MenubarContent" align="start" :side-offset="5" :align-offset="-3" force-mount>
-          <MenubarItem class="MenubarItem">
-            Undo
-            <div class="RightSlot">⌘ Z</div>
-          </MenubarItem>
-          <MenubarItem class="MenubarItem">
-            Redo
-            <div class="RightSlot">⇧ ⌘ Z</div>
-          </MenubarItem>
-          <MenubarSeparator class="MenubarSeparator" />
+        <MenubarContent class="menu_contentClass" :side-offset="2" force-mount>
+          <MenubarItem class="menu_itemClass"> Undo </MenubarItem>
+          <MenubarItem class="menu_itemClass"> Redo </MenubarItem>
+          <MenubarSeparator class="menu_separatorClass" />
           <MenubarSub>
-            <MenubarSubTrigger class="MenubarItem">
-              Find
-              <div class="RightSlot">icon</div>
-            </MenubarSubTrigger>
+            <MenubarSubTrigger class="menu_subTriggerClass"> Find <span>→</span> </MenubarSubTrigger>
 
             <MenubarPortal force-mount>
-              <MenubarSubContent class="MenubarContent" :align-offset="-5" force-mount>
-                <MenubarItem class="group MenubarItem"> Search the web… </MenubarItem>
-                <MenubarSeparator class="MenubarSeparator" />
-                <MenubarItem class="MenubarItem"> Find… </MenubarItem>
-                <MenubarItem class="MenubarItem"> Find Next </MenubarItem>
-                <MenubarItem class="MenubarItem"> Find Previous </MenubarItem>
+              <MenubarSubContent class="menu_contentClass" :align-offset="-6">
+                <MenubarItem class="menu_itemClass"> Search the web… </MenubarItem>
+                <MenubarSeparator class="menu_separatorClass" />
+                <MenubarItem class="menu_itemClass"> Find… </MenubarItem>
+                <MenubarItem class="menu_itemClass"> Find Next </MenubarItem>
+                <MenubarItem class="menu_itemClass"> Find Previous </MenubarItem>
+                <MenubarSub>
+                  <MenubarSubTrigger class="menu_subTriggerClass"> Advanced <span>→</span> </MenubarSubTrigger>
+
+                  <MenubarPortal force-mount>
+                    <MenubarSubContent class="menu_contentClass" :align-offset="-6">
+                      <MenubarItem class="menu_itemClass"> Regex </MenubarItem>
+                      <MenubarItem class="menu_itemClass"> Replace </MenubarItem>
+                    </MenubarSubContent>
+                  </MenubarPortal force-mount>
+                </MenubarSub>
               </MenubarSubContent>
-            </MenubarPortal>
+            </MenubarPortal force-mount>
           </MenubarSub>
-          <MenubarSeparator class="MenubarSeparator" />
-          <MenubarItem class="MenubarItem"> Cut </MenubarItem>
-          <MenubarItem class="MenubarItem"> Copy </MenubarItem>
-          <MenubarItem class="MenubarItem"> Paste </MenubarItem>
+          <MenubarSeparator class="menu_separatorClass" />
+          <MenubarItem class="menu_itemClass"> Cut </MenubarItem>
+          <MenubarItem class="menu_itemClass"> Copy </MenubarItem>
+          <MenubarItem class="menu_itemClass"> Paste </MenubarItem>
         </MenubarContent>
-      </MenubarPortal>
+      </MenubarPortal force-mount>
     </MenubarMenu>
 
     <MenubarMenu>
-      <MenubarTrigger class="MenubarTrigger"> View </MenubarTrigger>
+      <MenubarTrigger class="menubar_triggerClass"> View </MenubarTrigger>
       <MenubarPortal force-mount>
-        <MenubarContent class="MenubarContent" align="start" :side-offset="5" :align-offset="-14" force-mount>
-          <MenubarCheckboxItem v-model="checkboxOne" class="MenubarCheckboxItem">
-            <MenubarItemIndicator class="MenubarItemIndicator"> Icon </MenubarItemIndicator>
-            Show Bookmarks
-            <div class="RightSlot">⌘+B</div>
+        <MenubarContent class="menu_contentClass" :side-offset="2" force-mount>
+          <MenubarCheckboxItem
+            v-for="option in checkOptions"
+            :key="option"
+            class="menu_itemClass"
+            :checked="checkedSelection.includes(option)"
+            @update:checked="setCheckedSelection(option)"
+          >
+            {{ option }}
+            <MenubarItemIndicator :style="{ marginLeft: '10px' }" force-mount>
+              <TickIcon />
+            </MenubarItemIndicator>
           </MenubarCheckboxItem>
-          <MenubarCheckboxItem v-model="checkboxTwo" class="MenubarCheckboxItem">
-            <MenubarItemIndicator class="MenubarItemIndicator"> Icon </MenubarItemIndicator>
-            Show Full URLs
-          </MenubarCheckboxItem>
-          <MenubarSeparator class="MenubarSeparator" />
-          <MenubarItem class="MenubarItem">
-            Reload
-            <div class="RightSlot">⌘ R</div>
-          </MenubarItem>
-          <MenubarItem class="MenubarItem" disabled>
-            Force Reload
-            <div class="RightSlot">⇧ ⌘ R</div>
-          </MenubarItem>
-          <MenubarSeparator class="MenubarSeparator" />
-          <MenubarItem class="MenubarItem"> Toggle Fullscreen </MenubarItem>
-          <MenubarSeparator class="MenubarSeparator" />
-          <MenubarItem class="MenubarItem"> Hide Sidebar </MenubarItem>
+          <MenubarSeparator class="menu_separatorClass" />
+          <MenubarItem class="menu_itemClass"> Reload </MenubarItem>
+          <MenubarItem class="menu_itemClass"> Force Reload </MenubarItem>
+          <MenubarSeparator class="menu_separatorClass" />
+          <MenubarItem class="menu_itemClass"> Toggle Fullscreen </MenubarItem>
+          <MenubarSeparator class="menu_separatorClass" />
+          <MenubarItem class="menu_itemClass"> Hide Sidebar </MenubarItem>
         </MenubarContent>
-      </MenubarPortal>
+      </MenubarPortal force-mount>
     </MenubarMenu>
 
     <MenubarMenu>
-      <MenubarTrigger class="MenubarTrigger"> Profiles </MenubarTrigger>
+      <MenubarTrigger class="menubar_triggerClass"> Profiles </MenubarTrigger>
       <MenubarPortal force-mount>
-        <MenubarContent class="MenubarContent" align="start" :side-offset="5" :align-offset="-14" force-mount>
-          <MenubarRadioGroup v-model="person">
-            <MenubarRadioItem class="MenubarCheckboxItem" value="pedro">
-              <MenubarItemIndicator class="MenubarItemIndicator"> Icon </MenubarItemIndicator>
-              Pedro Duarte
-            </MenubarRadioItem>
-            <MenubarRadioItem class="MenubarCheckboxItem" value="colm">
-              <MenubarItemIndicator class="MenubarItemIndicator"> Icon </MenubarItemIndicator>
-              Colm Tuite
+        <MenubarContent class="menu_contentClass" :side-offset="2" force-mount>
+          <MenubarRadioGroup :value="radioSelection" @update:value="setRadioSelection">
+            <MenubarRadioItem v-for="option in radioOptions" :key="option" class="menu_itemClass" :value="option">
+              {{ option }}
+              <MenubarItemIndicator :style="{ marginLeft: '10px' }" force-mount>
+                <TickIcon />
+              </MenubarItemIndicator>
             </MenubarRadioItem>
           </MenubarRadioGroup>
-          <MenubarSeparator class="MenubarSeparator" />
-          <MenubarItem class="MenubarItem" @click="handleClick"> Edit… </MenubarItem>
-          <MenubarSeparator class="MenubarSeparator" />
-          <MenubarItem class="MenubarItem"> Add Profile… </MenubarItem>
         </MenubarContent>
-      </MenubarPortal>
+      </MenubarPortal force-mount>
+    </MenubarMenu>
+
+    <MenubarMenu>
+      <MenubarTrigger class="menubar_triggerClass"> History </MenubarTrigger>
+      <MenubarPortal force-mount>
+        <MenubarContent class="menu_contentClass" :side-offset="2" force-mount>
+          <MenubarLabel class="menu_labelClass"> Work </MenubarLabel>
+          <MenubarItem class="menu_itemClass"> Radix </MenubarItem>
+          <MenubarItem class="menu_itemClass"> Github </MenubarItem>
+          <MenubarItem class="menu_itemClass"> WorkOS </MenubarItem>
+          <MenubarLabel class="menu_labelClass"> Community </MenubarLabel>
+          <MenubarItem class="menu_itemClass"> Twitter </MenubarItem>
+          <MenubarItem class="menu_itemClass"> Discord </MenubarItem>
+          <MenubarItem class="menu_itemClass"> Slack </MenubarItem>
+        </MenubarContent>
+      </MenubarPortal force-mount>
     </MenubarMenu>
   </MenubarRoot>
 </template>
