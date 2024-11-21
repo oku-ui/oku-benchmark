@@ -1,7 +1,0 @@
-[build]
-public_url = "/frameworks/keyed/silkenweb/bundled-dist/"
-dist = "bundled-dist"
-
-[tools]
-wasm_bindgen = "0.2.92"
-wasm_opt = "version_116"

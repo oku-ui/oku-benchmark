@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "lib": ["dom", "es2020"],
-    "jsx": "preserve",
-    "jsxImportSource": "maverick.js"
-  },
-  "include": ["src"]
-}
