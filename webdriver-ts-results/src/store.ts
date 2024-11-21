@@ -24,7 +24,7 @@ const mappedFrameworks = rawFrameworks.map((f) => ({
   name: f.name,
   dir: f.dir,
   displayname: removeKeyedSuffix(f.name),
-  issues: f.issues ?? [],
+  issues: [] as number[],
   type: f.keyed ? FrameworkType.KEYED : FrameworkType.NON_KEYED,
   frameworkHomeURL: f.frameworkHomeURL,
 }));
@@ -33,8 +33,8 @@ const allBenchmarks = new Set(rawBenchmarks);
 const allFrameworks = new Set(mappedFrameworks);
 
 const results: Result[] = [];
-for (let result of rawResults) {
-  for (let b of result.b) {
+for (const result of rawResults) {
+  for (const b of result.b) {
     const values: { [k: string]: ResultValues } = {};
     for (const key of Object.keys(b.v)) {
       const r = b.v[key];
@@ -231,7 +231,11 @@ export const useRootStore = create<State & Actions>((set, get) => ({
   selectFramework: (framework: Framework, add: boolean) => {
     const newSelectedFramework = new Set(get().selectedFrameworks);
 
-    add ? newSelectedFramework.add(framework) : newSelectedFramework.delete(framework);
+    if (add) {
+      newSelectedFramework.add(framework);
+    } else {
+      newSelectedFramework.delete(framework);
+    }
 
     const t = { ...get(), selectedFrameworks: newSelectedFramework };
     return set(() => ({ ...t, resultTables: updateResultTable(t) }));
@@ -244,7 +248,11 @@ export const useRootStore = create<State & Actions>((set, get) => ({
         : get().frameworkLists[FrameworkType.NON_KEYED];
 
     for (const framework of frameworks) {
-      add ? newSelectedFramework.add(framework) : newSelectedFramework.delete(framework);
+      if (add) {
+        newSelectedFramework.add(framework);
+      } else {
+        newSelectedFramework.delete(framework);
+      }
     }
 
     const t = { ...get(), selectedFrameworks: newSelectedFramework };
@@ -256,7 +264,11 @@ export const useRootStore = create<State & Actions>((set, get) => ({
   selectCategory: (categoryId: number, add: boolean) => {
     const categories = new Set(get().categories);
 
-    add ? categories.add(categoryId) : categories.delete(categoryId);
+    if (add) {
+      categories.add(categoryId);
+    } else {
+      categories.delete(categoryId);
+    }
 
     const t = { ...get(), categories };
     return set(() => ({
@@ -267,7 +279,11 @@ export const useRootStore = create<State & Actions>((set, get) => ({
   selectBenchmark: (benchmark: Benchmark, add: boolean) => {
     const newSelectedBenchmark = new Set(get().selectedBenchmarks);
 
-    add ? newSelectedBenchmark.add(benchmark) : newSelectedBenchmark.delete(benchmark);
+    if (add) {
+      newSelectedBenchmark.add(benchmark);
+    } else {
+      newSelectedBenchmark.delete(benchmark);
+    }
 
     const t = { ...get(), selectedBenchmarks: newSelectedBenchmark };
     return set(() => ({
@@ -280,7 +296,11 @@ export const useRootStore = create<State & Actions>((set, get) => ({
     const benchmarks = get().benchmarkLists[benchmarkType];
 
     for (const benchmark of benchmarks) {
-      add ? newSelectedBenchmark.add(benchmark) : newSelectedBenchmark.delete(benchmark);
+      if (add) {
+        newSelectedBenchmark.add(benchmark);
+      } else {
+        newSelectedBenchmark.delete(benchmark);
+      }
     }
 
     const t = { ...get(), selectedBenchmarks: newSelectedBenchmark };

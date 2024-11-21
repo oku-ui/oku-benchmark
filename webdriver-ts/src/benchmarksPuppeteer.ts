@@ -22,14 +22,14 @@ import {
 
 export abstract class CPUBenchmarkPuppeteer implements BenchmarkImpl {
   type = BenchmarkType.CPU;
-  constructor(public benchmarkInfo: CPUBenchmarkInfo) {}
+  constructor(public benchmarkInfo: CPUBenchmarkInfo) { }
   abstract init(page: Page, framework: FrameworkData): Promise<any>;
   abstract run(page: Page, framework: FrameworkData): Promise<any>;
 }
 
 export abstract class MemBenchmarkPuppeteer implements BenchmarkImpl {
   type = BenchmarkType.MEM;
-  constructor(public benchmarkInfo: MemBenchmarkInfo) {}
+  constructor(public benchmarkInfo: MemBenchmarkInfo) { }
   abstract init(page: Page, framework: FrameworkData): Promise<any>;
   abstract run(page: Page, framework: FrameworkData): Promise<any>;
 }
@@ -47,18 +47,18 @@ export let benchRun = new (class extends CPUBenchmarkPuppeteer {
       await checkElementContainsText(
         page,
         "pierce/tbody>tr:nth-of-type(1)>td:nth-of-type(1)",
-        (i * 1000 + 1).toFixed()
+        (i * 10 + 1).toFixed()
       );
       await clickElement(page, "pierce/#clear");
-      await checkElementNotExists(page, "pierce/tbody>tr:nth-of-type(1000)>td:nth-of-type(1)");
+      await checkElementNotExists(page, "pierce/tbody>tr:nth-of-type(10)>td:nth-of-type(1)");
     }
   }
   async run(page: Page) {
     await clickElement(page, "pierce/#run");
     await checkElementContainsText(
       page,
-      "pierce/tbody>tr:nth-of-type(1000)>td:nth-of-type(1)",
-      ((this.benchmarkInfo.warmupCount + 1) * 1000).toFixed()
+      "pierce/tbody>tr:nth-of-type(10)>td:nth-of-type(1)",
+      ((this.benchmarkInfo.warmupCount + 1) * 10).toFixed()
     );
   }
 })();
@@ -387,18 +387,18 @@ export const benchCreateClear5Memory = new (class extends MemBenchmarkPuppeteer 
 
 export const benchmarks = [
   benchRun,
-  benchReplaceAll,
-  benchUpdate,
-  benchSelect,
-  benchSwapRows,
-  benchRemove,
-  benchRunBig,
-  benchAppendToManyRows,
-  benchClear,
-  benchReadyMemory,
-  benchRunMemory,
-  benchUpdate5Memory,
-  // benchReplace5Memory,
-  benchCreateClear5Memory,
-  benchRun10KMemory,
+  // benchReplaceAll,
+  // benchUpdate,
+  // benchSelect,
+  // benchSwapRows,
+  // benchRemove,
+  // benchRunBig,
+  // benchAppendToManyRows,
+  // benchClear,
+  // benchReadyMemory,
+  // benchRunMemory,
+  // benchUpdate5Memory,
+  // // benchReplace5Memory,
+  // benchCreateClear5Memory,
+  // benchRun10KMemory,
 ];

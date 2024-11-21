@@ -284,7 +284,7 @@ export async function executeBenchmark(
   benchmarkOptions: BenchmarkOptions
 ): Promise<ErrorAndWarning<any>> {
   let runBenchmarks: Array<BenchmarkPuppeteer> = benchmarks.filter(
-    (b) =>
+    (b: any) =>
       benchmarkId === b.benchmarkInfo.id && (b instanceof CPUBenchmarkPuppeteer || b instanceof MemBenchmarkPuppeteer)
   ) as Array<BenchmarkPuppeteer>;
   if (runBenchmarks.length != 1) throw `Benchmark name ${benchmarkId} is not unique (puppeteer)`;
