@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { shallowRef } from "vue";
 import TickIcon from "./TickIcon.vue";
 import {
@@ -20,9 +20,9 @@ import {
 } from "@oku-ui/primitives";
 
 const checkOptions = ["Always Show Bookmarks Bar", "Always Show Toolbar in Fullscreen", "Always Show Full URLs"];
-const checkedSelection = shallowRef<string[]>([checkOptions[1]!]);
+const checkedSelection = shallowRef([checkOptions[1]]);
 
-function setCheckedSelection(option: string) {
+function setCheckedSelection(option) {
   const cur = checkedSelection.value;
   checkedSelection.value = cur.includes(option) ? cur.filter((el) => el !== option) : cur.concat(option);
 }
@@ -30,7 +30,7 @@ function setCheckedSelection(option: string) {
 const radioOptions = ["Andy", "Benoît", "Colm", "Jenna", "Pedro"];
 const radioSelection = shallowRef(radioOptions[1]);
 
-function setRadioSelection(value: string) {
+function setRadioSelection(value) {
   radioSelection.value = value;
 }
 </script>
@@ -53,12 +53,12 @@ function setRadioSelection(value: string) {
                 <MenubarItem class="menu_itemClass"> Messages </MenubarItem>
                 <MenubarItem class="menu_itemClass"> Airdrop </MenubarItem>
               </MenubarSubContent>
-            </MenubarPortal force-mount>
+            </MenubarPortal>
           </MenubarSub>
           <MenubarSeparator class="menu_separatorClass" />
           <MenubarItem class="menu_itemClass"> Print… </MenubarItem>
         </MenubarContent>
-      </MenubarPortal force-mount>
+      </MenubarPortal>
     </MenubarMenu>
 
     <MenubarMenu>
@@ -86,17 +86,17 @@ function setRadioSelection(value: string) {
                       <MenubarItem class="menu_itemClass"> Regex </MenubarItem>
                       <MenubarItem class="menu_itemClass"> Replace </MenubarItem>
                     </MenubarSubContent>
-                  </MenubarPortal force-mount>
+                  </MenubarPortal>
                 </MenubarSub>
               </MenubarSubContent>
-            </MenubarPortal force-mount>
+            </MenubarPortal>
           </MenubarSub>
           <MenubarSeparator class="menu_separatorClass" />
           <MenubarItem class="menu_itemClass"> Cut </MenubarItem>
           <MenubarItem class="menu_itemClass"> Copy </MenubarItem>
           <MenubarItem class="menu_itemClass"> Paste </MenubarItem>
         </MenubarContent>
-      </MenubarPortal force-mount>
+      </MenubarPortal>
     </MenubarMenu>
 
     <MenubarMenu>
@@ -123,7 +123,7 @@ function setRadioSelection(value: string) {
           <MenubarSeparator class="menu_separatorClass" />
           <MenubarItem class="menu_itemClass"> Hide Sidebar </MenubarItem>
         </MenubarContent>
-      </MenubarPortal force-mount>
+      </MenubarPortal>
     </MenubarMenu>
 
     <MenubarMenu>
@@ -139,7 +139,7 @@ function setRadioSelection(value: string) {
             </MenubarRadioItem>
           </MenubarRadioGroup>
         </MenubarContent>
-      </MenubarPortal force-mount>
+      </MenubarPortal>
     </MenubarMenu>
 
     <MenubarMenu>
@@ -155,7 +155,7 @@ function setRadioSelection(value: string) {
           <MenubarItem class="menu_itemClass"> Discord </MenubarItem>
           <MenubarItem class="menu_itemClass"> Slack </MenubarItem>
         </MenubarContent>
-      </MenubarPortal force-mount>
+      </MenubarPortal>
     </MenubarMenu>
   </MenubarRoot>
 </template>
