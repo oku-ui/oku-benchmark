@@ -1,0 +1,24 @@
+{
+  "name": "js-framework-benchmark-reka-ui",
+  "private": true,
+  "version": "0.0.0",
+  "js-framework-benchmark": {
+    "frameworkVersionFromPackage": "reka-ui",
+    "frameworkHomeURL": "https://reka-ui.com/",
+    "customURL": "/dist"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build-prod": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "reka-ui": "^1.0.0-alpha.5",
+    "vue": "^3.5.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.3",
+    "vite": "^5.4.3"
+  }
+}
