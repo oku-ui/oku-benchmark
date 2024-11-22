@@ -14,7 +14,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@oku-ui/primitives": "^0.7.5",
+    "@oku-ui/primitives": "0.7.5",
     "vue": "^3.5.3"
   },
   "devDependencies": {
