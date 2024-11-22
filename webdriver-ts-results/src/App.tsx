@@ -36,7 +36,7 @@ const App = () => {
       <h2>js-framework-benchmark results for {version}</h2>
       <p>
         A description of the benchmark and the source code and can be found in the github{" "}
-        <a href="https://github.com/krausest/js-framework-benchmark">repository</a>.
+        <a href="https://github.com/oku-ui/oku-benchmark/tree/oku">repository</a>.
       </p>
     </div>
   ) : (
