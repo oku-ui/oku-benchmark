@@ -43,13 +43,13 @@ const App = () => {
     <p>
       Warning: These results are preliminary - use with caution (they may e.g. be from different browser versions).
       Official results are published on the{" "}
-      <a href="https://krausest.github.io/js-framework-benchmark/index.html">results page</a>.
+      <a href="https://github.com/oku-ui/oku-benchmark/tree/oku">results page</a>.
     </p>
   );
 
   const testEnvironmentInfo = (
     <p>
-      The benchmark was run on a MacBook Pro 14 (32 GB RAM, 8/14 Cores, OSX 15.0), {version}
+      The benchmark was run on a MacBook Air 13 (16 GB RAM, 8 Cores, OSX 15.1), {version}
       (arm64) using the puppeteer benchmark driver with reduced tracing.
     </p>
   );
